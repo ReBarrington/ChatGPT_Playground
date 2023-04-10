@@ -43,7 +43,8 @@ export const ExportButtonsContainer = styled.div`
 `;
 
 export const PersonaDropdownContainer = styled.div`
-  margin: 1rem auto;
+  position: relative;
+  display: inline-block;
 `;
 
 export const PromptLibraryContainer = styled.div`
@@ -93,6 +94,8 @@ export const ChatInput = styled.input`
     padding: 0.5rem 1rem;
     border-radius: 3px;
     width: 100%;
+    display: flex;
+    justify-content: center;
     margin-bottom: 1rem;
     box-shadow: 0 0 0 1px #d9d9d9;
     outline: none;
@@ -144,3 +147,55 @@ export const SecondaryButton = styled.button`
     background-color: #ccc;
   }
 `;
+
+export const DropdownButton = styled.button`
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #c2c2c2;
+  border-radius: 3px;
+  padding: 9px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
+`;
+
+export const DropdownContent = styled.div`
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #c2c2c2;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  min-width: 160px;
+  z-index: 1;
+`;
+
+export const DropdownItem = styled.div`
+  color: #000;
+  padding: 10px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
+`;
+
+export const StyledSelect = styled.select`
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #c2c2c2;
+  border-radius: 3px;
+  padding: 9px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+`

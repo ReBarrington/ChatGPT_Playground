@@ -1,45 +1,53 @@
 import React, { useState } from 'react';
-import { ChatWindow, ChatInput, PrimaryButton } from '../styled-components';
-
+import Loader from './Loader';
+import { ChatWindow, ChatInput } from '../styled-components';
 
 const Chat = ({ chatHistory, onSendMessageAsync }) => {
     const [messageText, setMessageText] = useState('');
+    const [isBusy, setIsBusy] = useState(false);
 
-    const handleSendClick = async () => {
+    const handleSendClickAsync = async () => {
         if (messageText.trim()) {
-            await onSendMessageAsync(messageText);
+            if (await onSendMessageAsync(messageText)) {
+                setIsBusy(false);
+            };
             setMessageText('');
         }
     };
 
-    const handleKeyPress = (event) => {
+    const handleKeyPressAsync = async (event) => {
         if (event.key === 'Enter') {
-            handleSendClick();
+            setIsBusy(true);
+            await handleSendClickAsync();
         }
     };
 
     return (
-        <>
-            <ChatWindow>
-                <div>
-                    {chatHistory.map((message, index) => (
-                        <div key={index}>
-                            <strong>{message.sender}: </strong>
-                            {message.text}
+        <div>
+            {isBusy ? (
+                <Loader />
+            ) : (
+                <>
+                    <ChatWindow>
+                        <div>
+                            {chatHistory.map((message, index) => (
+                                <div key={index}>
+                                    <strong>{message.sender}: </strong>
+                                    {message.text}
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-                <div>
-                </div>
-            </ChatWindow>
-            <ChatInput
-                type="text"
-                placeholder="Type a message..."
-                value={messageText}
-                onChange={(event) => setMessageText(event.target.value)}
-                onKeyPress={handleKeyPress}
-            />
-        </>
+                    </ChatWindow>
+                    <ChatInput
+                        type="text"
+                        placeholder="Type a message..."
+                        value={messageText}
+                        onChange={(event) => setMessageText(event.target.value)}
+                        onKeyPress={handleKeyPressAsync}
+                    />
+                </>
+            )}
+        </div>
     );
 }
 

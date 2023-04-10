@@ -1,5 +1,5 @@
 import React from 'react';
-import { PrimaryButton } from '../styled-components';
+import { PrimaryButton, ExportButtonsContainer } from '../styled-components';
 
 const ExportButton = ({ format, data, className }) => {
   const handleExportClick = () => {
@@ -18,11 +18,11 @@ const ExportButton = ({ format, data, className }) => {
   };
 
   return (
-    <div className={className}>
+    <ExportButtonsContainer>
         <PrimaryButton onClick={handleExportClick}>
         Export as {format}
         </PrimaryButton>
-    </div>
+    </ExportButtonsContainer>
   );
 }
 

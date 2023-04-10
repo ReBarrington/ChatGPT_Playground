@@ -21,6 +21,7 @@ Before running the app, you will need to configure your API key for the OpenAI C
 
 ```
 REACT_APP_OPENAI_API_KEY=YOUR_API_KEY
+REACT_APP_OPENAI_ORGANIZATION=YOUR_ORGANIZATION_ID
 ```
 
 

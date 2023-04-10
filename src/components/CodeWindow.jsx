@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PrimaryButton } from '../styled-components';
+import { PrimaryButton, CodeWindowContainer } from '../styled-components';
 
 const CodeWindow = ({ code, className }) => {
   const [copySuccess, setCopySuccess] = useState(false);
@@ -17,14 +17,14 @@ const CodeWindow = ({ code, className }) => {
   };
 
   return (
-    <div className={className}>
+    <CodeWindowContainer>
       <pre>
         <code>{code}</code>
       </pre>
       <PrimaryButton onClick={handleCopyClick}>
         {copySuccess ? 'Copied!' : 'Copy'}
       </PrimaryButton>
-    </div>
+    </CodeWindowContainer>
   );
 }
 

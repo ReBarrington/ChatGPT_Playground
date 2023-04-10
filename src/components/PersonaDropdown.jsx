@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { PersonaDropdownContainer, DropdownItem, StyledSelect } from '../styled-components';
 
 const PersonaDropdown = ({ options, onChange, className }) => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
@@ -10,15 +11,15 @@ const PersonaDropdown = ({ options, onChange, className }) => {
   };
 
   return (
-    <div className={className}>
-      <select value={selectedOption} onChange={handleOptionChange}>
+    <PersonaDropdownContainer>
+      <StyledSelect value={selectedOption} onChange={handleOptionChange}>
         {options.map((option, index) => (
           <option key={index} value={option}>
-            {option}
+              {option}
           </option>
         ))}
-      </select>
-    </div>
+      </StyledSelect>
+    </PersonaDropdownContainer>
   );
 }
 
