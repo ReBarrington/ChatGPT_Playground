@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import Loader from './Loader';
+import ErrorToast from './ErrorToast';
 import { ChatWindow, ChatInput } from '../styled-components';
 
 const Chat = ({ chatHistory, onSendMessageAsync }) => {
     const [messageText, setMessageText] = useState('');
     const [isBusy, setIsBusy] = useState(false);
+    const [error, setError] = useState(null);
 
     const handleSendClickAsync = async () => {
         if (messageText.trim()) {
             if (await onSendMessageAsync(messageText)) {
                 setIsBusy(false);
-            };
+            } else {
+                setError('Something went wrong')
+            }
             setMessageText('');
         }
     };
@@ -47,6 +51,7 @@ const Chat = ({ chatHistory, onSendMessageAsync }) => {
                     />
                 </>
             )}
+            {error && <ErrorToast message={error} />}
         </div>
     );
 }
